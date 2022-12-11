@@ -1,0 +1,42 @@
+#YAML 
+name: Config management workflow
+
+on:
+  pull_request:
+    types:
+      - opened
+    branches:
+      - main
+  push:
+    branches:
+      - main
+
+
+jobs:
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    env:
+      environment: dev
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v1
+
+      - name: Config management workflow
+        working-directory: aws_bucket
+        run: |
+          terraform init
+          terraform workspace new ${{ env.environment }}
+          terraform workspace select ${{ env.environment }} && terraform plan
+          terraform workspace select ${{ env.environment }} && terraform apply -auto-approve

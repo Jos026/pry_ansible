@@ -1,0 +1,12 @@
+---
+- name: Play to create Nginx
+  hosts: all
+  become: true
+  remote_user: ubuntu
+
+  tasks:
+  - name: Task to install Nginx
+    apt:
+      name: nginx
+      update_cache: yes
+      state: latest
