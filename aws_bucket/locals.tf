@@ -3,5 +3,5 @@ locals {
   ssh_user         = "ubuntu"
   key_name         = "devops"
   private_key_path = "/home/jos/.ssh/id_rsa"
-  ami_id           = "ami-06f8b5848c05cf249"
+  ami_id           = "ami-0f0bad5ff61123617"
 }
