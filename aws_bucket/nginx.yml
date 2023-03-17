@@ -1,12 +1,12 @@
 ---
-- name: Run Docker Compose
+- name: Play to create Nginx
   hosts: all
   become: true
   remote_user: ubuntu
 
   tasks:
-  - name: Change directory
-    command: cd /home/ubuntu/docker-compose-linux/
-
-  - name: Run docker compose
-    command: sudo docker-compose up -d
+  - name: Task to install Ngnix
+    apt:
+      name: Nginx
+      update_cache: yes
+      state: latest
