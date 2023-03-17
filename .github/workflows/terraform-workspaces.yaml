@@ -1,4 +1,4 @@
-#YAML
+#YAML file
 name: Config management workflow
 
 on:
