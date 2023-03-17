@@ -6,7 +6,7 @@
 
   tasks:
   - name: Change directory
-    command: cd docker-compose-linux/
+    command: cd /home/ubuntu/docker-compose-linux/
 
   - name: Run docker compose
     command: sudo docker-compose up -d
