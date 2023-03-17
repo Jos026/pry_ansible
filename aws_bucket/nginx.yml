@@ -5,8 +5,8 @@
   remote_user: ubuntu
 
   tasks:
-  - name: Task to install Ngnix
+  - name: Task to install Nginx
     apt:
-      name: Nginx
+      name: nginx
       update_cache: yes
       state: latest
